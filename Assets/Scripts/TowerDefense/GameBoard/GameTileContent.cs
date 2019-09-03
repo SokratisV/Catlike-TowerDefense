@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[SelectionBase]
 public class GameTileContent : MonoBehaviour
 {
     [SerializeField]
     GameTileContentType type = default;
-
+    public bool BlocksPath =>
+            Type == GameTileContentType.Wall || Type == GameTileContentType.Tower;
     public GameTileContentType Type => type;
     GameTileContentFactory originFactory;
-
     public GameTileContentFactory OriginFactory
     {
         get => originFactory;
@@ -19,7 +18,7 @@ public class GameTileContent : MonoBehaviour
             originFactory = value;
         }
     }
-
+    public virtual void GameUpdate() { }
     public void Recycle()
     {
         originFactory.Reclaim(this);

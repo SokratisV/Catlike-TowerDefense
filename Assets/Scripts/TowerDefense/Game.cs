@@ -5,10 +5,8 @@ public class Game : MonoBehaviour
 {
     [SerializeField]
     Vector2Int boardSize = new Vector2Int(11, 11);
-
     [SerializeField]
     GameBoard board = default;
-
     [SerializeField]
     GameTileContentFactory tileContentFactory = default;
     [SerializeField]
@@ -23,7 +21,6 @@ public class Game : MonoBehaviour
         board.Initialize(boardSize, tileContentFactory);
         board.ShowGrid = true;
     }
-
     private void OnValidate()
     {
         if (boardSize.x < 2)
@@ -61,8 +58,9 @@ public class Game : MonoBehaviour
             SpawnEnemy();
         }
         enemies.GameUpdate();
+        Physics.SyncTransforms();
+        board.GameUpdate();
     }
-
     private void SpawnEnemy()
     {
         GameTile spawnPoint =
@@ -71,16 +69,21 @@ public class Game : MonoBehaviour
         enemy.SpawnOn(spawnPoint);
         enemies.Add(enemy);
     }
-
     void HandleTouch()
     {
         GameTile tile = board.GetTile(TouchRay);
         if (tile != null)
         {
-            board.ToggleWall(tile);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                board.ToggleTower(tile);
+            }
+            else
+            {
+                board.ToggleWall(tile);
+            }
         }
     }
-
     void HandleAlternativeTouch()
     {
         GameTile tile = board.GetTile(TouchRay);

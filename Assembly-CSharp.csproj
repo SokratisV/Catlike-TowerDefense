@@ -56,17 +56,18 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\DirectionExtensions.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemy.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\EnemyCollection.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\EnemyFactory.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\FloatRange.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyCollection.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\TargetPoint.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Game.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\GameBoard.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\GameObjectFactory.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\GameTile.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\GameTileContent.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\DirectionExtensions.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameBoard.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameObjectFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTile.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContent.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\Tower.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

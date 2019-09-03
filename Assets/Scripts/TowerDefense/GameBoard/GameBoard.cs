@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
@@ -18,7 +16,14 @@ public class GameBoard : MonoBehaviour
     [SerializeField]
     Texture2D gridTexture = default;
     public int SpawnPointCount => spawnPoints.Count;
-
+    List<GameTileContent> updatingContent = new List<GameTileContent>();
+    public void GameUpdate()
+    {
+        for (int i = 0; i < updatingContent.Count; i++)
+        {
+            updatingContent[i].GameUpdate();
+        }
+    }
     public void Initialize(Vector2Int size, GameTileContentFactory contentFactory)
     {
         this.size = size;
@@ -57,7 +62,6 @@ public class GameBoard : MonoBehaviour
         ToggleDestination(tiles[tiles.Length / 2]);
         ToggleSpawnPoint(tiles[0]);
     }
-
     bool FindPaths()
     {
         foreach (GameTile tile in tiles)
@@ -115,7 +119,6 @@ public class GameBoard : MonoBehaviour
         }
         return true;
     }
-
     public void ToggleDestination(GameTile tile)
     {
         if (tile.Content.Type == GameTileContentType.Destination)
@@ -134,10 +137,9 @@ public class GameBoard : MonoBehaviour
             FindPaths();
         }
     }
-
     public GameTile GetTile(Ray ray)
     {
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, 1))
         {
             int x = (int)(hit.point.x + size.x * 0.5f);
             int y = (int)(hit.point.z + size.y * 0.5f);
@@ -148,7 +150,6 @@ public class GameBoard : MonoBehaviour
         }
         return null;
     }
-
     public void ToggleWall(GameTile tile)
     {
         if (tile.Content.Type == GameTileContentType.Wall)
@@ -164,6 +165,33 @@ public class GameBoard : MonoBehaviour
                 tile.Content = contentFactory.Get(GameTileContentType.Empty);
                 FindPaths();
             }
+        }
+    }
+    public void ToggleTower(GameTile tile)
+    {
+        if (tile.Content.Type == GameTileContentType.Tower)
+        {
+            updatingContent.Remove(tile.Content);
+            tile.Content = contentFactory.Get(GameTileContentType.Empty);
+            FindPaths();
+        }
+        else if (tile.Content.Type == GameTileContentType.Empty)
+        {
+            tile.Content = contentFactory.Get(GameTileContentType.Tower);
+            if (FindPaths())
+            {
+                updatingContent.Add(tile.Content);
+            }
+            else
+            {
+                tile.Content = contentFactory.Get(GameTileContentType.Empty);
+                FindPaths();
+            }
+        }
+        else if (tile.Content.Type == GameTileContentType.Wall)
+        {
+            tile.Content = contentFactory.Get(GameTileContentType.Tower);
+            updatingContent.Add(tile.Content);
         }
     }
     public bool ShowPaths
@@ -222,7 +250,6 @@ public class GameBoard : MonoBehaviour
             spawnPoints.Add(tile);
         }
     }
-
     public GameTile GetSpawnPoint(int index)
     {
         return spawnPoints[index];
