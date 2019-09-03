@@ -13,6 +13,9 @@ public class GameTile : MonoBehaviour
     public bool HasPath => distance != int.MaxValue;
     public bool IsAlternative { get; set; }
     GameTileContent content;
+    public GameTile NextTileOnPath => nextOnPath;
+    public Vector3 ExitPoint { get; private set; }
+    public Direction PathDirection { get; private set; }
 
     static Quaternion
         northRotation = Quaternion.Euler(90f, 0f, 0f),
@@ -64,7 +67,7 @@ public class GameTile : MonoBehaviour
             westRotation;
     }
 
-    GameTile GrowPathTo(GameTile neighbor)
+    GameTile GrowPathTo(GameTile neighbor, Direction direction)
     {
         if (!HasPath || neighbor == null || neighbor.HasPath)
         {
@@ -72,6 +75,9 @@ public class GameTile : MonoBehaviour
         }
         neighbor.distance = distance + 1;
         neighbor.nextOnPath = this;
+        neighbor.ExitPoint =
+            (neighbor.transform.localPosition + transform.localPosition) * 0.5f;
+        neighbor.PathDirection = direction;
         return neighbor.Content.Type != GameTileContentType.Wall ? neighbor : null;
     }
 
@@ -85,6 +91,7 @@ public class GameTile : MonoBehaviour
     {
         distance = 0;
         nextOnPath = null;
+        ExitPoint = transform.localPosition;
     }
     public static void MakeNorthSouthNeighbors(GameTile north, GameTile south)
     {
@@ -94,12 +101,12 @@ public class GameTile : MonoBehaviour
         south.north = north;
         north.south = south;
     }
-    public GameTile GrowPathNorth() => GrowPathTo(north);
+    public GameTile GrowPathNorth() => GrowPathTo(north, Direction.South);
 
-    public GameTile GrowPathEast() => GrowPathTo(east);
+    public GameTile GrowPathEast() => GrowPathTo(east, Direction.West);
 
-    public GameTile GrowPathSouth() => GrowPathTo(south);
+    public GameTile GrowPathSouth() => GrowPathTo(south, Direction.North);
 
-    public GameTile GrowPathWest() => GrowPathTo(west);
+    public GameTile GrowPathWest() => GrowPathTo(west, Direction.East);
 }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Game : MonoBehaviour
@@ -14,7 +13,7 @@ public class Game : MonoBehaviour
     GameTileContentFactory tileContentFactory = default;
     [SerializeField]
     EnemyFactory enemyFactory = default;
-
+    EnemyCollection enemies = new EnemyCollection();
     [SerializeField, Range(0.1f, 10f)]
     float spawnSpeed = 1f, spawnProgress;
     Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -61,6 +60,7 @@ public class Game : MonoBehaviour
             spawnProgress -= 1f;
             SpawnEnemy();
         }
+        enemies.GameUpdate();
     }
 
     private void SpawnEnemy()
@@ -69,6 +69,7 @@ public class Game : MonoBehaviour
             board.GetSpawnPoint(Random.Range(0, board.SpawnPointCount));
         Enemy enemy = enemyFactory.Get();
         enemy.SpawnOn(spawnPoint);
+        enemies.Add(enemy);
     }
 
     void HandleTouch()

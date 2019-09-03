@@ -56,7 +56,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\DirectionExtensions.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemy.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\EnemyCollection.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\EnemyFactory.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Game.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard.cs" />
