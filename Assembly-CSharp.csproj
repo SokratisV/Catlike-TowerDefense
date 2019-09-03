@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\TowerDefense\Enemy.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\EnemyCollection.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\EnemyFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\FloatRange.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Game.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameObjectFactory.cs" />

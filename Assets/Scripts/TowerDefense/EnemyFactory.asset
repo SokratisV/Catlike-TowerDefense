@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: EnemyFactory
   m_EditorClassIdentifier: 
   prefab: {fileID: 331305589482172035, guid: 46e7ab343a8ce9244b494d472e21592a, type: 3}
+  scale: 1
+  randomness: {x: 0.8, y: 1.6}
