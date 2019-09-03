@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
         positionTo = tileFrom.transform.localPosition;
         directionChange = DirectionChange.None;
         directionAngleTo = direction.GetAngle();
+        model.localPosition = Vector3.zero;
         transform.localRotation = direction.GetRotation();
         progressFactor = 2f;
     }
@@ -79,21 +80,28 @@ public class Enemy : MonoBehaviour
         transform.localRotation = direction.GetRotation();
         directionAngleTo = direction.GetAngle();
         progressFactor = 1f;
+        model.localPosition = Vector3.zero;
     }
     void PrepareTurnRight()
     {
         directionAngleTo = directionAngleFrom + 90f;
         progressFactor = 1f / (Mathf.PI * 0.25f);
+        model.localPosition = new Vector3(-0.5f, 0f);
+        transform.localPosition = positionFrom + direction.GetHalfVector();
     }
     void PrepareTurnLeft()
     {
         directionAngleTo = directionAngleFrom - 90f;
         progressFactor = 1f / (Mathf.PI * 0.25f);
+        model.localPosition = new Vector3(0.5f, 0f);
+        transform.localPosition = positionFrom + direction.GetHalfVector();
     }
     void PrepareTurnAround()
     {
         directionAngleTo = directionAngleFrom + 180f;
         progressFactor = 2f;
+        model.localPosition = Vector3.zero;
+        transform.localPosition = positionFrom;
     }
     public bool GameUpdate()
     {
@@ -109,9 +117,12 @@ public class Enemy : MonoBehaviour
             PrepareNextState();
             progress *= progressFactor;
         }
-        transform.localPosition =
-            Vector3.LerpUnclamped(positionFrom, positionTo, progress);
-        if (directionChange != DirectionChange.None)
+        if (directionChange == DirectionChange.None)
+        {
+            transform.localPosition =
+                Vector3.LerpUnclamped(positionFrom, positionTo, progress);
+        }
+        else
         {
             float angle = Mathf.LerpUnclamped(
                 directionAngleFrom, directionAngleTo, progress
