@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : GameBehavior
 {
     EnemyFactory originFactory;
     GameTile tileFrom, tileTo;
@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
         transform.localPosition = positionFrom;
         progressFactor = speed / (Mathf.PI * Mathf.Max(Mathf.Abs(pathOffset), 0.2f));
     }
-    public bool GameUpdate()
+    public override bool GameUpdate()
     {
         if (Health <= 0f)
         {

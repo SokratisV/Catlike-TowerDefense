@@ -61,15 +61,20 @@
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyFactory.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\TargetPoint.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Game.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBehavior.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\DirectionExtensions.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameBoard.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameObjectFactory.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTile.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContent.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\Explosion.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\LaserTower.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\MortarTower.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\Shell.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\Tower.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\WarEntity.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\WarFactory.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
