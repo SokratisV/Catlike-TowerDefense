@@ -67,6 +67,8 @@
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTile.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContent.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\LaserTower.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Player\MortarTower.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\Tower.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
  <Reference Include="Unity.Timeline.Editor">
