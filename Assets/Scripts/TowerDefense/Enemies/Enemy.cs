@@ -22,13 +22,13 @@ public class Enemy : GameBehavior
             originFactory = value;
         }
     }
-    public void Initialize(float scale, float pathOffset, float speed)
+    public void Initialize(float scale, float pathOffset, float speed, float health)
     {
         Scale = scale;
         model.localScale = new Vector3(scale, scale, scale);
         this.pathOffset = pathOffset;
         this.speed = speed;
-        Health = 100f * scale;
+        Health = health;
     }
     public void ApplyDamage(float damage)
     {
