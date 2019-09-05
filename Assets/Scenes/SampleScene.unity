@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.65080994, g: 0.666729, b: 0.7075472, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.05
@@ -34,7 +34,7 @@ RenderSettings:
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
+  m_ReflectionBounces: 2
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d4c399b109307c544a2be96d9eda9eaf,
+    type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
@@ -298,12 +299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbd66ab4f717ee46bbe1226b6c4c43b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSpeed: 4.13
+  startingPlayerHealth: 10
   boardSize: {x: 11, y: 11}
   board: {fileID: 1868872469}
   tileContentFactory: {fileID: 11400000, guid: 885cd474a6d16ca4e9fefddb66d14a50, type: 2}
-  enemyFactory: {fileID: 11400000, guid: e7ba825954c3d974490ac8e12db43d62, type: 2}
   warFactory: {fileID: 11400000, guid: 5d821057ed118e0449e4deb3f285e6e9, type: 2}
-  spawnSpeed: 0.48
+  scenario: {fileID: 11400000, guid: 1e1355eca7a582b4a923871874fa5c6e, type: 2}
 --- !u!4 &420904207
 Transform:
   m_ObjectHideFlags: 0
@@ -848,8 +850,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 1
-  m_ShowCustomSorter: 1
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -869,7 +871,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1868872469
 MonoBehaviour:
@@ -986,7 +988,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2101137015
 Transform:

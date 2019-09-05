@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b542218561ebe143bac13cedae8202f, type: 3}
+  m_Name: Cube Enemy Factory
+  m_EditorClassIdentifier: 
+  small:
+    prefab: {fileID: 331305589482172035, guid: 46e7ab343a8ce9244b494d472e21592a, type: 3}
+    scale: 1
+    scaleRandomness: {x: 0.9, y: 1.1}
+    pathOffset: 1
+    offSetRandomness: {x: -0.3, y: 0.3}
+    speed: 1.6
+    speedRandomness: {x: 0.9, y: 1.1}
+    health: 45
+    healthRandomness: {x: 0.9, y: 1.1}
+  medium:
+    prefab: {fileID: 331305589482172035, guid: 646b20fea515e2f4d9baf612ff54c42a, type: 3}
+    scale: 1.2
+    scaleRandomness: {x: 0.9, y: 1.1}
+    pathOffset: 1
+    offSetRandomness: {x: -0.2, y: 0.2}
+    speed: 1.4
+    speedRandomness: {x: 0.8, y: 1}
+    health: 65
+    healthRandomness: {x: 0.8, y: 1}
+  large:
+    prefab: {fileID: 331305589482172035, guid: 78c97d8c13afd7140a082bb0ad644a62, type: 3}
+    scale: 1.4
+    scaleRandomness: {x: 0.8, y: 1.1}
+    pathOffset: 1
+    offSetRandomness: {x: -0.1, y: 0.1}
+    speed: 1.2
+    speedRandomness: {x: 0.7, y: 1}
+    health: 75
+    healthRandomness: {x: 0.8, y: 1.2}

@@ -117,7 +117,7 @@ public class Enemy : GameBehavior
     {
         if (Health <= 0f)
         {
-            OriginFactory.Reclaim(this);
+            Recycle();
             return false;
         }
 
@@ -126,7 +126,8 @@ public class Enemy : GameBehavior
         {
             if (tileTo == null)
             {
-                OriginFactory.Reclaim(this);
+                Game.EnemyReachedDestination();
+                Recycle();
                 return false;
             }
             progress = (progress - 1f) / progressFactor;
@@ -146,5 +147,9 @@ public class Enemy : GameBehavior
             transform.localRotation = Quaternion.Euler(0f, angle, 0f);
         }
         return true;
+    }
+    public override void Recycle()
+    {
+        OriginFactory.Reclaim(this);
     }
 }

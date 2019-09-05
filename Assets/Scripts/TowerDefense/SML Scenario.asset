@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257ea5a094cecf74da950fb8dd3545bb, type: 3}
+  m_Name: SML Scenario
+  m_EditorClassIdentifier: 
+  waves:
+  - {fileID: 11400000, guid: 1481891ea51308b42a396add13c10e80, type: 2}
+  - {fileID: 11400000, guid: 7ad55bcce9f86874fbb805b3d6121c80, type: 2}
+  cycles: 5
+  cycleSpeedUp: 0.5

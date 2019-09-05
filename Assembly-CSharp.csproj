@@ -57,8 +57,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyCollection.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemySpawnSequence.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyWave.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\GameBehaviorCollection.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\TargetPoint.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Game.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBehavior.cs" />
@@ -68,6 +70,7 @@
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTile.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContent.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameScenario.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\Explosion.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\LaserTower.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\MortarTower.cs" />

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b542218561ebe143bac13cedae8202f, type: 3}
-  m_Name: EnemyFactory
+  m_Name: Sphere Enemy Factory
   m_EditorClassIdentifier: 
   small:
-    prefab: {fileID: 331305589482172035, guid: 46e7ab343a8ce9244b494d472e21592a, type: 3}
+    prefab: {fileID: 331305589482172035, guid: bbb842f25794d104ca9c46f655aaa8ec, type: 3}
     scale: 1
     scaleRandomness: {x: 0.9, y: 1.1}
     pathOffset: 1
@@ -23,7 +23,7 @@ MonoBehaviour:
     health: 45
     healthRandomness: {x: 0.9, y: 1.1}
   medium:
-    prefab: {fileID: 331305589482172035, guid: 646b20fea515e2f4d9baf612ff54c42a, type: 3}
+    prefab: {fileID: 331305589482172035, guid: 03f919fe4b6fcea4d8f3d60120b0a535, type: 3}
     scale: 1.2
     scaleRandomness: {x: 0.9, y: 1.1}
     pathOffset: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     health: 65
     healthRandomness: {x: 0.8, y: 1}
   large:
-    prefab: {fileID: 331305589482172035, guid: 78c97d8c13afd7140a082bb0ad644a62, type: 3}
+    prefab: {fileID: 331305589482172035, guid: 620b042b6c4c0cc43890c81a9a46a2e5, type: 3}
     scale: 1.4
     scaleRandomness: {x: 0.8, y: 1.1}
     pathOffset: 1

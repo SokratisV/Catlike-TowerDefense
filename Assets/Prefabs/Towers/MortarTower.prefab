@@ -137,8 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  targetingRange: 6
-  shotsPerSecond: 1.5
+  targetingRange: 7
+  shotsPerSecond: 1.3
+  shellBlastRadius: 0.75
+  shellDamage: 15
   mortar: {fileID: 6275297600813779571}
 --- !u!1 &6831869150710015286
 GameObject:
