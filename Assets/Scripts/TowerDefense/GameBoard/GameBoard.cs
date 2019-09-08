@@ -198,6 +198,7 @@ public class GameBoard : MonoBehaviour
         {
             // tile.Content = contentFactory.Get(GameTileContentType.Tower);
             tile.Content = contentFactory.Get(towerType);
+            updatingContent.Add(tile.Content);
         }
     }
     public bool ShowPaths

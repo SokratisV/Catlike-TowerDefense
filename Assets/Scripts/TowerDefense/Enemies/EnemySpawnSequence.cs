@@ -3,7 +3,6 @@
 [System.Serializable]
 public class EnemySpawnSequence
 {
-
     [SerializeField]
     EnemyFactory factory = default;
     [SerializeField]
@@ -31,6 +30,8 @@ public class EnemySpawnSequence
             while (cooldown >= sequence.cooldown)
             {
                 cooldown -= sequence.cooldown;
+                // Game.Instance.UpdateText(count,
+                // sequence.cooldown * sequence.amount - sequence.cooldown * count);
                 if (count >= sequence.amount)
                 {
                     return cooldown;

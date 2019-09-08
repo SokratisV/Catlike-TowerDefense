@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
+using TMPro;
+using System.Collections;
+using UnityEngine.UI;
+using System;
 
 public class Game : MonoBehaviour
 {
@@ -19,23 +23,49 @@ public class Game : MonoBehaviour
     GameBehaviorCollection enemies = new GameBehaviorCollection();
     GameBehaviorCollection nonEnemies = new GameBehaviorCollection();
     Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
+    public static Game Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                Debug.Log("Null instance");
+                return instance;
+            }
+            else
+            {
+                return instance;
+            }
+        }
+    }
     TowerType selectedTowerType;
     static Game instance;
     [SerializeField]
-    GameScenario scenario = default;
+    GameScenario[] scenarios = default;
     GameScenario.State activeScenario;
-
+    int currentScenarioIndex = 0;
     int playerHealth;
+    // UI--
+    [SerializeField]
+    private bool gameIsPlaying = true;
+    public TextMeshProUGUI playerHealthVar, scenarioVar;
+    public Button interactableButton;
+    bool defeatCoroutineIsExecuted = false;
+    // --UI
+    public void StartNextRound()
+    {
+        gameIsPlaying = true;
+    }
     public static Shell SpawnShell()
     {
-        Shell shell = instance.warFactory.Shell;
-        instance.nonEnemies.Add(shell);
+        Shell shell = Instance.warFactory.Shell;
+        Instance.nonEnemies.Add(shell);
         return shell;
     }
     public static Explosion SpawnExplosion()
     {
-        Explosion explosion = instance.warFactory.Explosion;
-        instance.nonEnemies.Add(explosion);
+        Explosion explosion = Instance.warFactory.Explosion;
+        Instance.nonEnemies.Add(explosion);
         return explosion;
     }
     void OnEnable()
@@ -47,7 +77,13 @@ public class Game : MonoBehaviour
         playerHealth = startingPlayerHealth;
         board.Initialize(boardSize, tileContentFactory);
         board.ShowGrid = true;
-        activeScenario = scenario.Begin();
+    }
+    void Start()
+    {
+        gameIsPlaying = false;
+        activeScenario = scenarios[currentScenarioIndex].Begin();
+        scenarioVar.text = (1 + currentScenarioIndex).ToString();
+        playerHealthVar.text = startingPlayerHealth.ToString();
     }
     private void OnValidate()
     {
@@ -99,30 +135,52 @@ public class Game : MonoBehaviour
         {
             Time.timeScale = playSpeed;
         }
-
         if (playerHealth <= 0 && startingPlayerHealth > 0)
         {
             Debug.Log("Defeat!");
-            BeginNewGame();
+            if (!defeatCoroutineIsExecuted)
+            {
+                StartCoroutine(Defeat());
+            }
         }
-        if (!activeScenario.Progress() && enemies.IsEmpty)
+        if (gameIsPlaying)
         {
-            Debug.Log("Victory!");
-            BeginNewGame();
-            activeScenario.Progress();
+            if (!activeScenario.Progress() && enemies.IsEmpty)
+            {
+                Debug.Log("Victory!");
+                NextScenario();
+                activeScenario.Progress();
+            }
         }
+
         enemies.GameUpdate();
         Physics.SyncTransforms();
         board.GameUpdate();
         nonEnemies.GameUpdate();
     }
+    private IEnumerator Defeat()
+    {
+        defeatCoroutineIsExecuted = true;
+        ResetBoard();
+        interactableButton.interactable = false;
+        gameIsPlaying = false;
+        ChangeButtonText("Defeat!");
+        yield return new WaitForSeconds(2f);
+        ChangeButtonText("Start New Game");
+        interactableButton.interactable = true;
+        interactableButton.onClick.AddListener(delegate { BeginNewGame(); });
+    }
+    private void ChangeButtonText(string text)
+    {
+        interactableButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
+    }
     public static void SpawnEnemy(EnemyFactory factory, EnemyType type)
     {
         GameTile spawnPoint =
-            instance.board.GetSpawnPoint(Random.Range(0, instance.board.SpawnPointCount));
+            Instance.board.GetSpawnPoint(Random.Range(0, Instance.board.SpawnPointCount));
         Enemy enemy = factory.Get(type);
         enemy.SpawnOn(spawnPoint);
-        instance.enemies.Add(enemy);
+        Instance.enemies.Add(enemy);
     }
     void HandleTouch()
     {
@@ -154,16 +212,39 @@ public class Game : MonoBehaviour
             }
         }
     }
-    void BeginNewGame()
+    public void BeginNewGame()
     {
+        defeatCoroutineIsExecuted = false;
+        currentScenarioIndex = 0;
         playerHealth = startingPlayerHealth;
-        enemies.Clear();
-        nonEnemies.Clear();
-        board.Clear();
-        activeScenario = scenario.Begin();
+        ChangeButtonText("Start Next Round");
+        interactableButton.interactable = false;
+        gameIsPlaying = true;
+        ResetBoard();
+        activeScenario = scenarios[currentScenarioIndex].Begin();
+    }
+    public void NextScenario()
+    {
+        currentScenarioIndex++;
+        if (currentScenarioIndex >= scenarios.Length - 1)
+        {
+            currentScenarioIndex = 0;
+        }
+        activeScenario = scenarios[currentScenarioIndex].Begin();
+        scenarioVar.text = (1 + currentScenarioIndex).ToString();
     }
     public static void EnemyReachedDestination()
     {
-        instance.playerHealth -= 1;
+        Instance.playerHealth -= 1;
+        if (Instance.playerHealth >= 0)
+        {
+            Instance.playerHealthVar.text = Instance.playerHealth.ToString();
+        }
+    }
+    private void ResetBoard()
+    {
+        enemies.Clear();
+        nonEnemies.Clear();
+        board.Clear();
     }
 }
