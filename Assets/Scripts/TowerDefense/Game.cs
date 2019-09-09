@@ -55,6 +55,7 @@ public class Game : MonoBehaviour
     public void StartNextRound()
     {
         gameIsPlaying = true;
+        interactableButton.interactable = false;
     }
     public static Shell SpawnShell()
     {
@@ -147,9 +148,8 @@ public class Game : MonoBehaviour
         {
             if (!activeScenario.Progress() && enemies.IsEmpty)
             {
-                Debug.Log("Victory!");
-                NextScenario();
-                activeScenario.Progress();
+                Debug.Log("Round won!");
+                StartCoroutine(Victory());
             }
         }
 
@@ -157,6 +157,16 @@ public class Game : MonoBehaviour
         Physics.SyncTransforms();
         board.GameUpdate();
         nonEnemies.GameUpdate();
+    }
+    private IEnumerator Victory()
+    {
+        NextScenario();
+        gameIsPlaying = false;
+        ChangeButtonText("Round won!");
+        yield return new WaitForSeconds(2f);
+        ChangeButtonText("Start Next Round");
+        interactableButton.interactable = true;
+        interactableButton.onClick.AddListener(delegate { StartNextRound(); });
     }
     private IEnumerator Defeat()
     {
@@ -226,7 +236,7 @@ public class Game : MonoBehaviour
     public void NextScenario()
     {
         currentScenarioIndex++;
-        if (currentScenarioIndex >= scenarios.Length - 1)
+        if (currentScenarioIndex >= scenarios.Length)
         {
             currentScenarioIndex = 0;
         }

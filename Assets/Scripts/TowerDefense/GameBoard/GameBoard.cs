@@ -167,9 +167,12 @@ public class GameBoard : MonoBehaviour
     }
     public void ToggleTower(GameTile tile, TowerType towerType)
     {
+        // If selected tile is a Tower
         if (tile.Content.Type == GameTileContentType.Tower)
         {
             updatingContent.Remove(tile.Content);
+            //If the type of tower is the same as the new type, make it empty
+            //else add the new content type
             if (((Tower)tile.Content).TowerType == towerType)
             {
                 tile.Content = contentFactory.Get(GameTileContentType.Empty);
@@ -181,6 +184,7 @@ public class GameBoard : MonoBehaviour
                 updatingContent.Add(tile.Content);
             }
         }
+        //else if selected tile is Empty
         else if (tile.Content.Type == GameTileContentType.Empty)
         {
             tile.Content = contentFactory.Get(towerType);
@@ -190,13 +194,12 @@ public class GameBoard : MonoBehaviour
             }
             else
             {
-                tile.Content = contentFactory.Get(towerType);
+                tile.Content = contentFactory.Get(GameTileContentType.Empty);
                 FindPaths();
             }
         }
         else if (tile.Content.Type == GameTileContentType.Wall)
         {
-            // tile.Content = contentFactory.Get(GameTileContentType.Tower);
             tile.Content = contentFactory.Get(towerType);
             updatingContent.Add(tile.Content);
         }
