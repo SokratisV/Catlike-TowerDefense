@@ -24,7 +24,7 @@ public class GameBoard : MonoBehaviour
             updatingContent[i].GameUpdate();
         }
     }
-    public void Initialize(Vector2Int size, GameTileContentFactory contentFactory)
+    public void Initialize(Vector2Int size, GameTileContentFactory contentFactory, PremadeBoard board = null)
     {
         this.size = size;
         this.contentFactory = contentFactory;
@@ -58,7 +58,16 @@ public class GameBoard : MonoBehaviour
                 }
             }
         }
-        Clear();
+        if (board == null)
+        {
+            print("<b><color=yellow>old sheet</color></b>");
+            Clear();
+        }
+        else
+        {
+            print("<b><color=green>gewd sheet</color></b>");
+            Clear(new List<int>(board.boardTiles));
+        }
     }
     bool FindPaths()
     {
@@ -258,21 +267,72 @@ public class GameBoard : MonoBehaviour
         {
             tile.Content = contentFactory.Get(GameTileContentType.SpawnPoint);
             spawnPoints.Add(tile);
+            print(tile);
         }
     }
     public GameTile GetSpawnPoint(int index)
     {
         return spawnPoints[index];
     }
-    public void Clear()
+    public void Clear(List<int> list = null)
     {
-        foreach (GameTile tile in tiles)
+        List<GameTile> destinations = new List<GameTile>();
+        List<GameTile> spawns = new List<GameTile>();
+        if (list == null)
         {
-            tile.Content = contentFactory.Get(GameTileContentType.Empty);
+            print("<b><color=blue>old sheet</color></b>");
+            foreach (GameTile tile in tiles)
+            {
+                tile.Content = contentFactory.Get(GameTileContentType.Empty);
+            }
+            destinations.Add(tiles[tiles.Length / 2]);
+            spawns.Add(tiles[0]);
+            // ToggleDestination(tiles[tiles.Length / 2]);
+            // ToggleSpawnPoint(tiles[0]);
         }
+        else
+        {
+            print("<b><color=green>gewd sheet</color></b>");
+            for (int i = 0; i < tiles.Length; i++)
+            {
+                switch (list[i])
+                {
+                    case 0:
+                        tiles[i].Content = contentFactory.Get(GameTileContentType.Empty);
+                        break;
+                    case 1:
+                        tiles[i].Content = contentFactory.Get(GameTileContentType.Destination);
+                        destinations.Add(tiles[i]);
+                        break;
+                    case 2:
+                        tiles[i].Content = contentFactory.Get(GameTileContentType.SpawnPoint);
+                        spawns.Add(tiles[i]);
+                        break;
+                    case 3:
+                        tiles[i].Content = contentFactory.Get(GameTileContentType.Wall);
+                        break;
+                    case 4:
+                        tiles[i].Content = contentFactory.Get(TowerType.Laser);
+                        break;
+                    case 5:
+                        tiles[i].Content = contentFactory.Get(TowerType.Mortar);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        foreach (var tile in destinations)
+        {
+            ToggleDestination(tile);
+        }
+        foreach (var tile in spawns)
+        {
+            ToggleSpawnPoint(tile);
+        }
+        destinations.Clear();
+        spawns.Clear();
         spawnPoints.Clear();
         updatingContent.Clear();
-        ToggleDestination(tiles[tiles.Length / 2]);
-        ToggleSpawnPoint(tiles[0]);
     }
 }

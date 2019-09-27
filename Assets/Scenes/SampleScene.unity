@@ -637,6 +637,7 @@ MonoBehaviour:
   playSpeed: 1
   startingPlayerHealth: 10
   boardSize: {x: 11, y: 11}
+  premadeBoard: {fileID: 0}
   board: {fileID: 1868872469}
   tileContentFactory: {fileID: 11400000, guid: 885cd474a6d16ca4e9fefddb66d14a50, type: 2}
   warFactory: {fileID: 11400000, guid: 5d821057ed118e0449e4deb3f285e6e9, type: 2}

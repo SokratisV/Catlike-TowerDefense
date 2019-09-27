@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2881261565197629317}
   - component: {fileID: 331305589482172035}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: Enemy Small Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314494daa91127f4cb3e5fc6da7fdf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationConfig: {fileID: 11400000, guid: 2db9bed64c64d2d4083f3dae7d44dd1d, type: 2}
   model: {fileID: 6320780600285596596}
 --- !u!1 &6107457391100042438
 GameObject:

@@ -57,6 +57,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyAnimationConfig.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyAnimator.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyFactory.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemySpawnSequence.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyWave.cs" />
@@ -70,6 +72,7 @@
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTile.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContent.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTileContentFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\PremadeBoard.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameScenario.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\Explosion.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Player\LaserTower.cs" />
@@ -118,9 +121,6 @@
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Postprocessing.Editor">
  <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
  </Reference>
@@ -141,6 +141,9 @@
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.quicksearch">
+ <HintPath>C:/Users/Sokratis/Desktop/UnityProjects/Catlike-TowerDefense/Library/ScriptAssemblies/com.unity.quicksearch.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

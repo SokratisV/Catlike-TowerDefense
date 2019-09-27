@@ -8,18 +8,13 @@ using System;
 public class Game : MonoBehaviour
 {
     const float pausedTimeScale = 0.2f;
-    [SerializeField, Range(1f, 10f)]
-    float playSpeed = 1f;
-    [SerializeField, Range(0, 100)]
-    int startingPlayerHealth = 10;
-    [SerializeField]
-    Vector2Int boardSize = new Vector2Int(11, 11);
-    [SerializeField]
-    GameBoard board = default;
-    [SerializeField]
-    GameTileContentFactory tileContentFactory = default;
-    [SerializeField]
-    WarFactory warFactory = default;
+    [SerializeField, Range(1f, 10f)] float playSpeed = 1f;
+    [SerializeField, Range(0, 100)] int startingPlayerHealth = 10;
+    [SerializeField] Vector2Int boardSize = new Vector2Int(11, 11);
+    [SerializeField] PremadeBoard premadeBoard;
+    [SerializeField] GameBoard board = default;
+    [SerializeField] GameTileContentFactory tileContentFactory = default;
+    [SerializeField] WarFactory warFactory = default;
     GameBehaviorCollection enemies = new GameBehaviorCollection();
     GameBehaviorCollection nonEnemies = new GameBehaviorCollection();
     Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -40,8 +35,7 @@ public class Game : MonoBehaviour
     }
     TowerType selectedTowerType;
     static Game instance;
-    [SerializeField]
-    GameScenario[] scenarios = default;
+    [SerializeField] GameScenario[] scenarios = default;
     GameScenario.State activeScenario;
     int currentScenarioIndex = 0;
     int playerHealth;
@@ -75,8 +69,17 @@ public class Game : MonoBehaviour
     }
     void Awake()
     {
+        if (premadeBoard != null && premadeBoard.boardTiles.Length == boardSize.x * boardSize.y)
+        {
+            print("<b><color=green>gewd sheet</color></b>");
+            board.Initialize(boardSize, tileContentFactory, premadeBoard);
+        }
+        else
+        {
+            print("<b><color=yellow>old sheet</color></b>");
+            board.Initialize(boardSize, tileContentFactory);
+        }
         playerHealth = startingPlayerHealth;
-        board.Initialize(boardSize, tileContentFactory);
         board.ShowGrid = true;
     }
     void Start()

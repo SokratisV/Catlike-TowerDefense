@@ -2,6 +2,8 @@
 
 public class Enemy : GameBehavior
 {
+    [SerializeField] EnemyAnimationConfig animationConfig = default;
+    EnemyAnimator animator;
     EnemyFactory originFactory;
     GameTile tileFrom, tileTo;
     Vector3 positionFrom, positionTo;
@@ -9,8 +11,7 @@ public class Enemy : GameBehavior
     Direction direction;
     DirectionChange directionChange;
     float directionAngleFrom, directionAngleTo;
-    [SerializeField]
-    Transform model = default;
+    [SerializeField] Transform model = default;
     public float Scale { get; private set; }
     float Health { get; set; }
     public EnemyFactory OriginFactory
@@ -29,6 +30,7 @@ public class Enemy : GameBehavior
         this.pathOffset = pathOffset;
         this.speed = speed;
         Health = health;
+        animator.Play(speed / scale);
     }
     public void ApplyDamage(float damage)
     {
@@ -150,6 +152,14 @@ public class Enemy : GameBehavior
     }
     public override void Recycle()
     {
+        animator.Stop();
         OriginFactory.Reclaim(this);
+    }
+    private void Awake()
+    {
+        animator.Configure(
+            model.GetChild(0).gameObject.AddComponent<Animator>(),
+            animationConfig
+        );
     }
 }
