@@ -56,15 +56,17 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyFactory.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemySpawnSequence.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\EnemyWave.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\GameBehaviorCollection.cs" />
-     <Compile Include="Assets\Scripts\TowerDefense\Enemies\TargetPoint.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Animations\EnemyAnimationConfig.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Animations\EnemyAnimator.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Logic\Enemy.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Logic\EnemyFactory.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Logic\EnemySpawnSequence.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Logic\TargetPoint.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\Enemies\Enemy Waves\EnemyWave.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\Game.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBehavior.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\DirectionExtensions.cs" />
+     <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameBehaviorCollection.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameBoard.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameObjectFactory.cs" />
      <Compile Include="Assets\Scripts\TowerDefense\GameBoard\GameTile.cs" />

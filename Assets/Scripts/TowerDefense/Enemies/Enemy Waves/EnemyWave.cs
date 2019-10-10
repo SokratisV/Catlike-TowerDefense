@@ -3,9 +3,7 @@
 [CreateAssetMenu]
 public class EnemyWave : ScriptableObject
 {
-
-    [SerializeField]
-    EnemySpawnSequence[] spawnSequences = {
+    [SerializeField] EnemySpawnSequence[] spawnSequences = {
         new EnemySpawnSequence()
     };
     public State Begin() => new State(this);

@@ -3,14 +3,10 @@
 [CreateAssetMenu]
 public class GameScenario : ScriptableObject
 {
-
-    [SerializeField]
-    EnemyWave[] waves = { };
+    [SerializeField] EnemyWave[] waves = { };
     public State Begin() => new State(this);
-    [SerializeField, Range(0, 10)]
-    int cycles = 1;
-    [SerializeField, Range(0f, 1f)]
-    float cycleSpeedUp = 0.5f;
+    [SerializeField, Range(0, 10)] int cycles = 1;
+    [SerializeField, Range(0f, 1f)] float cycleSpeedUp = 0.5f;
     [System.Serializable]
     public struct State
     {
