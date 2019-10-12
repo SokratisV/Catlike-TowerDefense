@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cube Enemy Factory
   m_EditorClassIdentifier: 
   small:
-    prefab: {fileID: 331305589482172035, guid: 46e7ab343a8ce9244b494d472e21592a, type: 3}
+    prefab: {fileID: 331305589482172035, guid: 78b67306557a6cd47926844170a51804, type: 3}
     scale: 1
     scaleRandomness: {x: 0.9, y: 1.1}
     pathOffset: 1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31acea9765f46fb4db2a0e384a32702c, type: 3}
+  m_Name: Rhino Animations
+  m_EditorClassIdentifier: 
+  move: {fileID: 7400000, guid: c0a37df8df1039d47aca86b7c03a8876, type: 3}
+  intro: {fileID: 7400000, guid: 9c5f11275197ada48bbfaf3964291e94, type: 3}
+  outro: {fileID: 7400000, guid: 01d2c094f5b70b24295c04d9949815d7, type: 3}
+  dying: {fileID: 7400000, guid: e81768ff5ffe78c458874d90bdb2a6c8, type: 3}
+  appear: {fileID: 7400000, guid: c13d2789900c41644ba269df15ff48c6, type: 2}
+  disappear: {fileID: 7400000, guid: d4cdb913822c6ca4e8417b407b80844b, type: 2}
+  moveAnimationSpeed: 1
